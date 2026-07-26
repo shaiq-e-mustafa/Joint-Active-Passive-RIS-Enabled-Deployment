@@ -1,0 +1,7 @@
+channel_model:
+  carrier_frequency: 28e9       
+  c: 3e8
+  eta_los: 2.5
+  eta_nlos: 3.5
+  beta_0_dB: -61
+  d_0 : 1
