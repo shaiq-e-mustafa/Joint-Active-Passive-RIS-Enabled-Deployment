@@ -5,3 +5,7 @@ channel_model:
   eta_nlos: 3.5
   beta_0_dB: -61
   d_0 : 1
+  pmax_dB: 10
+  P_max : 30
+  active_ris_noise: -90
+  reciever_nosie: -90
