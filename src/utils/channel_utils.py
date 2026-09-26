@@ -12,6 +12,9 @@ def sample_polar(radius_range, angle_range, rng):
     theta = rng.uniform(*angle_range)
     return np.array([r * np.cos(theta), r * np.sin(theta)])
 
+def random_rcs(target_rcs_lim, rng):
+    return float(rng.uniform(*target_rcs_lim))
+
 def bearing(from_pos, to_pos):
     from_pos = np.asarray(from_pos, dtype=float)
     to_pos = np.asarray(to_pos, dtype=float)

@@ -9,3 +9,8 @@ channel_model:
   P_max : 30
   active_ris_noise: -90
   reciever_nosie: -90
+  M: 64
+  L: 32
+  K_USERS: 8
+  RCS : 1
+  validate: True
