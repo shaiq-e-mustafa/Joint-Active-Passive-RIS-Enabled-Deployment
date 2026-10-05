@@ -91,7 +91,7 @@ class ISACSystem:
         interference = np.zeros((K, N), dtype=complex)
 
         noise_power_linear = to_linear(
-            int(settings.config.channel_model.reciever_nosie) - 30
+            float(settings.config.channel_model.reciever_nosie) - 30
         )
 
         for k, user in enumerate(self.users):
@@ -123,8 +123,8 @@ class ISACSystem:
         return y, desired, interference
     
     def build_sinr(self):
-        sigma_v_sq = to_linear(int(settings.config.channel_model.active_ris_noise) - 30)
-        sigma_k_sq = to_linear(int(settings.config.channel_model.reciever_nosie) - 30)
+        sigma_v_sq = to_linear(float(settings.config.channel_model.active_ris_noise) - 30)
+        sigma_k_sq = to_linear(float(settings.config.channel_model.reciever_nosie) - 30)
 
         for k, user_k in enumerate(self.users):
             signal_power = np.abs((user_k.h_bar.conj().T @ user_k.w)).item() ** 2
@@ -195,7 +195,7 @@ class ISACSystem:
         """Echo plus noise for one snapshot x (M x N). Amplified noise of active panel i: the outbound v_i is reflected, scattered by
         the target (random amplitude alpha_t) and returns through every panel; the return noise v_i' goes straight to the BS."""
         M, N = x.shape
-        sigma_r_sq = to_linear(int(settings.config.channel_model.reciever_nosie) - 30)
+        sigma_r_sq = to_linear(float(settings.config.channel_model.reciever_nosie) - 30)
         results = {}
         for target in self.targets:
             alpha_t = (rng.standard_normal() + 1j * rng.standard_normal()) * np.sqrt(target.rcs / 2)
@@ -235,8 +235,8 @@ class ISACSystem:
                 + sigma_t^2 sigma_v^2 (sum_i c_i) u u^H,   c_i = sum_l |phi_il|^2 |b_il|^2    (outbound noise scattered by the target)
         u = total echo vector (all-pairs); the diagonal operator uses c_i u_i u_i^H per panel. Hermitian legacy: G^H in the first term."""
         M = settings.config.channel_model.M
-        sigma_v_sq = to_linear(int(settings.config.channel_model.active_ris_noise) - 30)
-        sigma_r_sq = to_linear(int(settings.config.channel_model.reciever_nosie) - 30)
+        sigma_v_sq = to_linear(float(settings.config.channel_model.active_ris_noise) - 30)
+        sigma_r_sq = to_linear(float(settings.config.channel_model.reciever_nosie) - 30)
 
         amp = [p for p in self.panels if p.state.a != 0 and p.state.active]
         J_return = np.zeros((M, M), dtype=complex)

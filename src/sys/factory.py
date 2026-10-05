@@ -48,10 +48,10 @@ def make_panel_state(active, panel_active, L, rng):
         gains=(rng.uniform(0, np.sqrt(to_linear(settings.config.channel_model.pmax_dB)), size=L)
                if active else None),
         noise=(
-            (np.sqrt(10 ** ((int(settings.config.channel_model.active_ris_noise) - 30) / 10) / 2)
+            (np.sqrt(10 ** ((float(settings.config.channel_model.active_ris_noise) - 30) / 10) / 2)
              * (rng.standard_normal(L) + 1j * rng.standard_normal(L))) if active else 0),
         noise_2=(
-            (np.sqrt(10 ** ((int(settings.config.channel_model.active_ris_noise) - 30) / 10) / 2)
+            (np.sqrt(10 ** ((float(settings.config.channel_model.active_ris_noise) - 30) / 10) / 2)
              * (rng.standard_normal(L) + 1j * rng.standard_normal(L))) if active else 0
         )
     )

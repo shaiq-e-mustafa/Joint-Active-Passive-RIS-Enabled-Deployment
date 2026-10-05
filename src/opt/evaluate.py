@@ -114,7 +114,7 @@ def evaluate_scene(design, scene, sinr_target_db=None, rate_cap=None):
     rate_cap = float(opt_cfg("rate_cap_bps_hz", 8)) if rate_cap is None else rate_cap
     system = build_system(design, scene)
     P = system.p_total_linear
-    N0 = to_linear(int(cfg("reciever_nosie", -96)) - 30)
+    N0 = to_linear(float(cfg("reciever_nosie", -96)) - 30)
     SV = to_linear(float(cfg("active_ris_noise", -96.0)) - 30)
     n_radar = int(_aim(system, design).sum())
     system.build_hbar()
