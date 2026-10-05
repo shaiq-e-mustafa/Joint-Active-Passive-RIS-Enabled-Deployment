@@ -60,6 +60,7 @@ channel_model:
   modulation: qpsk               # the code generates QPSK symbols (src/waveform/symbols.py)
   ber_formula: "Q(sqrt(SINR))"   # WIRED. Gray QPSK with symbol SINR. The draft's Q(sqrt(2 SINR)) is the BPSK formula
   direct_comm_link: blocked      # WIRED via ISACSystem.direct_link_scale = 0 (Entry 12, "option 1")
+  beamformer_baseline: rzf       # PENDING (MRT stays as legacy): regularized ZF + a dedicated sensing covariance R0
   # --- model structure ------------------------------------------------------------------------
   reciprocity: reciprocal        # WIRED (src/sys/convention.py, audit C1): echo = G^T Phi b b^T Phi G; one RIS phase set k(d1+d2) serves
                                  # radar and comm. "hermitian" reproduces Entries 1-12 (legacy 2-D planar path only)
