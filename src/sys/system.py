@@ -21,12 +21,14 @@ class UserLink:
     sinr: int = None
     air: int = None
     ber: int = None
+    pos: np.ndarray = None              # (x, y) in meters, set by factory.build_system()
 
-@dataclass 
+@dataclass
 class TargetLink:
     target_id: int
     rcs: int
     b_i: np.ndarray = None
+    pos: np.ndarray = None              # (x, y) in meters, set by factory.build_system()
     
 
 

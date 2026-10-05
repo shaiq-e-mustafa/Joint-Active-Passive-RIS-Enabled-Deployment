@@ -121,7 +121,7 @@ def build_system(n_panels, k_users, k_targets, active_mask, L, M, p_total_linear
 
     panels = [RISPanel(panel_id=i, channels=c, state=s, pos=p)
               for i, (c, s, p) in enumerate(zip(panels_ch, panels_st, panel_pos))]
-    users = [UserLink(user_id=k, channels=c) for k, c in enumerate(users_ch)]
-    targets = [TargetLink(target_id=k, rcs=target_rcs[k]) for k in range(k_targets)]   
+    users = [UserLink(user_id=k, channels=c, pos=p) for k, (c, p) in enumerate(zip(users_ch, user_pos))]
+    targets = [TargetLink(target_id=k, rcs=target_rcs[k], pos=target_pos[k]) for k in range(k_targets)]
 
     return ISACSystem(panels=panels, users=users, p_total_linear=p_total_linear, targets=targets, rng=rng)

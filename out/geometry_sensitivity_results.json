@@ -1,0 +1,1541 @@
+[
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -245.76056688898137,
+    "std_snr_db": 2.7731213870172677
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -207.0770109871672,
+    "std_snr_db": 10.290841346568431
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -196.42191789063915,
+    "std_snr_db": 13.445952822413734
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -233.44952075676642,
+    "std_snr_db": 3.7954284129782168
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -214.3215754956067,
+    "std_snr_db": 3.542029920728095
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -185.38235223058362,
+    "std_snr_db": 5.56590837178834
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -220.71517129346472,
+    "std_snr_db": 2.9011475662898714
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -200.8125504433437,
+    "std_snr_db": 3.469336439216672
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -183.29561169017006,
+    "std_snr_db": 4.312323953032813
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -189.16176685443332,
+    "std_snr_db": 4.918205082337409
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -153.51585478517163,
+    "std_snr_db": 9.648340911117879
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -144.21883669377348,
+    "std_snr_db": 10.669620859884816
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -178.3209691936319,
+    "std_snr_db": 2.481814472235169
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -159.37731538633145,
+    "std_snr_db": 2.806368456408576
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -128.51114741418309,
+    "std_snr_db": 8.184371952524693
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -163.93959364332932,
+    "std_snr_db": 3.8869094987645063
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -146.13659364696468,
+    "std_snr_db": 4.4717089843181
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -127.9412442060247,
+    "std_snr_db": 5.458110242278895
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -142.9703634615708,
+    "std_snr_db": 5.128735800616094
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -104.13353299795065,
+    "std_snr_db": 8.395399836750018
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -95.96599457683331,
+    "std_snr_db": 8.48373280970503
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -129.47206007105305,
+    "std_snr_db": 3.5284915503764482
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -109.9030641223147,
+    "std_snr_db": 5.692516290190327
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -78.97847464420286,
+    "std_snr_db": 11.348752673057021
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -114.01311753005014,
+    "std_snr_db": 4.767826752198682
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -97.80841782122994,
+    "std_snr_db": 4.848610602716491
+  },
+  {
+    "active_fraction_label": "0% active (passive-only, current)",
+    "active_fraction": 0.0,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -82.37535605320485,
+    "std_snr_db": 5.073503660871029
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -238.24333426159652,
+    "std_snr_db": 4.99520835521485
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -209.0295016789656,
+    "std_snr_db": 7.253533280924139
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -192.00738013558308,
+    "std_snr_db": 17.65605935754681
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -227.34971865119036,
+    "std_snr_db": 4.013064258854335
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -208.53798798770327,
+    "std_snr_db": 2.724445973870913
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -177.30460347223942,
+    "std_snr_db": 12.17357610369349
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -214.37260619684713,
+    "std_snr_db": 3.777982203036005
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -196.7204913505715,
+    "std_snr_db": 4.326978575567912
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -179.12027064835905,
+    "std_snr_db": 2.3273590813242784
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -184.32395795231295,
+    "std_snr_db": 4.801277280722938
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -152.83066614446722,
+    "std_snr_db": 8.079189793857248
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -145.61863803764663,
+    "std_snr_db": 6.006260340868021
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -170.95734701286423,
+    "std_snr_db": 3.1080739153385046
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -154.4291877529562,
+    "std_snr_db": 3.6159005082406472
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -113.54460317664488,
+    "std_snr_db": 23.588317225175018
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -158.16879554505624,
+    "std_snr_db": 3.831129090462197
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -141.32978129893854,
+    "std_snr_db": 4.956358024347719
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -121.31606364110203,
+    "std_snr_db": 4.981107663102696
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -136.72852714905738,
+    "std_snr_db": 2.9848989209588996
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -100.46730016787123,
+    "std_snr_db": 13.01272039744101
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -92.78473914221306,
+    "std_snr_db": 16.679654673658835
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -125.52621250517777,
+    "std_snr_db": 4.012271471474508
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -109.24500311484505,
+    "std_snr_db": 4.11198887506334
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -70.66754241501798,
+    "std_snr_db": 14.734936401688492
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -110.89253478181476,
+    "std_snr_db": 3.6984381739590555
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -92.26438733038025,
+    "std_snr_db": 4.390098230863471
+  },
+  {
+    "active_fraction_label": "25% active",
+    "active_fraction": 0.25,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -72.64920727538625,
+    "std_snr_db": 4.008379664183018
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -236.53992661702364,
+    "std_snr_db": 3.7022886724876565
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -199.55987976324428,
+    "std_snr_db": 13.197020328749083
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -188.92771928963396,
+    "std_snr_db": 8.688283623967218
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -224.40863608160043,
+    "std_snr_db": 5.3124543963172455
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -203.68469178675346,
+    "std_snr_db": 2.639095731208999
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -175.7286325433889,
+    "std_snr_db": 8.095775442812464
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -209.85609054504715,
+    "std_snr_db": 3.575205460859787
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -190.71868207630422,
+    "std_snr_db": 3.663003344197115
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "28 GHz (current)",
+    "freq_hz": 28000000000.0,
+    "beta_0_db": -61.38493281289306,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -175.17145170043196,
+    "std_snr_db": 2.37898797263612
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -178.32091645383377,
+    "std_snr_db": 5.537208038459711
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -141.2690969147971,
+    "std_snr_db": 14.54267437785357
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -129.1672085432761,
+    "std_snr_db": 12.574165747088175
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -166.68828894620276,
+    "std_snr_db": 3.5257779629206323
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -147.09800179234875,
+    "std_snr_db": 3.876548815218313
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -116.0114556375861,
+    "std_snr_db": 17.66562789875758
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -151.1009700454558,
+    "std_snr_db": 3.35136789370311
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -134.7833471196937,
+    "std_snr_db": 2.7785407243566875
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "5.9 GHz (C-band)",
+    "freq_hz": 5900000000.0,
+    "beta_0_db": -47.85881241889156,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -118.00201130765136,
+    "std_snr_db": 3.7596329531122756
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -131.7216376519553,
+    "std_snr_db": 1.758013678647884
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -93.67708260278172,
+    "std_snr_db": 18.863479724790114
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "20-40m (current)",
+    "panel_radius": [
+      20.0,
+      40.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -80.78342972006024,
+    "std_snr_db": 12.798209701168993
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -119.2269442749932,
+    "std_snr_db": 4.891180888364921
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -98.2441008447413,
+    "std_snr_db": 4.264749400307122
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "10-20m",
+    "panel_radius": [
+      10.0,
+      20.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -65.56905011071854,
+    "std_snr_db": 15.714180675968585
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "60-100m (current)",
+    "target_radius": [
+      60.0,
+      100.0
+    ],
+    "mean_snr_db": -103.4112740414984,
+    "std_snr_db": 1.7844333624555337
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "30-50m",
+    "target_radius": [
+      30.0,
+      50.0
+    ],
+    "mean_snr_db": -84.60283070540267,
+    "std_snr_db": 3.526700610321715
+  },
+  {
+    "active_fraction_label": "100% active (all)",
+    "active_fraction": 1.0,
+    "freq_label": "1.5 GHz (L-band)",
+    "freq_hz": 1500000000.0,
+    "beta_0_db": -35.9635973671623,
+    "panel_radius_label": "5-10m",
+    "panel_radius": [
+      5.0,
+      10.0
+    ],
+    "target_radius_label": "15-25m",
+    "target_radius": [
+      15.0,
+      25.0
+    ],
+    "mean_snr_db": -69.65397963658057,
+    "std_snr_db": 3.783747031276479
+  }
+]
