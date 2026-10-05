@@ -1,6 +1,6 @@
-from src.channel.risConfig import get_link_params, is_blocked, is_blocked_line_boolean, calibrate_lambda_b
+from src.channel.risConfig import get_link_params, is_blocked_line_boolean, calibrate_lambda_b
 from src.channel.channel_model import get_path_loss_linear, get_hybrid_channel_exact, wavefront_is_exact
-from src.channel.fading import get_Gi, get_bi, get_fi, get_hdk, get_rtt
+from src.channel.fading import get_Gi, get_bi, get_fi, get_hdk
 from src.sys.risInfo import PanelState
 from src.sys.system import RISPanel, UserLink, ISACSystem, TargetLink
 from src.sys.channels import  PanelChannels, UserChannels

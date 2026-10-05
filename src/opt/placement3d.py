@@ -57,8 +57,8 @@ def greedy_order(candidates, design_points, nx, ny, n_select, p_block=0.30, n_tr
     M = g.shape[2]
     tot = np.zeros((n_trials, nQ, M), dtype=complex)
     chosen, avail = [], list(range(nC))
-    for _ in range(n_select):
-        best, best_score, best_tot = None, -np.inf, None
+    for _ in range(min(n_select, nC)):                                                 # cannot choose more sites than there are candidates
+        best, best_score = avail[0], -np.inf                                           # fallback if no candidate has a usable score
         for c in avail:
             gc = g[c]                                                                 # (Q, M)
             ip = np.einsum("tqm,qm->tq", tot.conj(), gc)                              # <tot, g>

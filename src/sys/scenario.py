@@ -5,8 +5,6 @@ users at 1.5 m height. RIS panels (flat UPAs on facades, 5 m height) are placed 
 panel's normal bisects its directions to the BS and the zone centre.
 """
 import numpy as np
-from src.utils.config import settings
-from src.utils.channel_utils import to_db
 from src.channel.risConfig import get_link_params
 from src.channel.channel_model import wavelength
 from src.channel.geometry3d import (cfg, to3, upa_elements, panel_normal, link_3d, bs_array,

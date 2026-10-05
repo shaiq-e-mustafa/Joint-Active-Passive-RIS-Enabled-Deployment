@@ -17,7 +17,7 @@ plan_under_budget(...)          -- planning-time knapsack-greedy on the coverage
 """
 import numpy as np
 from src.utils.channel_utils import to_linear
-from src.channel.geometry3d import cfg, to3, upa_elements, panel_normal, link_3d, bs_array, point_end, ris_end
+from src.channel.geometry3d import cfg, upa_elements, panel_normal, link_3d, bs_array, ris_end
 from src.channel.risConfig import calibrate_lambda_b, is_blocked_line_boolean
 from src.sim.deployment import BS_POS
 from src.sys import scenario as sc

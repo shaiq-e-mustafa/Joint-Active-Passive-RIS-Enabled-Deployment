@@ -1,4 +1,4 @@
-from src.utils.channel_utils import to_db, to_linear
+from src.utils.channel_utils import to_linear
 from src.utils.config import settings
 import numpy as np
 
