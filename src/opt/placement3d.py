@@ -2,7 +2,7 @@
 
 Greedy on a deterministic *coverage surrogate*: for every candidate site c and design point q (a possible
 target location in the zone) the planner knows the LoS geometry, hence the echo vector the panel would
-contribute if it aimed at q:  g_{c,q} = G_c^H (phi_q * b_{c,q})  (M-dim, exact spherical-wave phases).
+contribute if it aimed at q:  g_{c,q} = G_c^T (phi_q * b_{c,q})  (M-dim, exact spherical-wave phases, echo_vec of src/sys/convention.py).
 Adding candidate c to the chosen set S gives, with its panel-level phase aligned to the running sum,
     |tot_q + e^{j beta} g_{c,q}|^2 = |tot_q|^2 + |g|^2 + 2 |tot_q^H g|            (if the BS link is not blocked)
 Score(c) = min over design points q of  mean over blockage trials t of  10 log10 |tot_{t,q}|^4  (radar SNR ~ |g|^4).

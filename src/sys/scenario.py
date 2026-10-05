@@ -37,8 +37,8 @@ def disk_sample(center, radius, n, rng):
 
 
 def direct_vector(tpos2, mode, rng):
-    """BS<->target direct path as an (M,1) vector in the same convention as g_i = G_i^H Phi_i b_i
-    (conjugate of the forward row). mode: 'los' | 'nlos' | 'none'."""
+    """BS<->target direct path as an (M,1) echo vector, in the convention of src/sys/convention.py (direct_echo: the forward
+    row transposed when reciprocal, conjugate-transposed in the legacy hermitian convention). mode: 'los' | 'nlos' | 'none'."""
     if mode == "none":
         return None
     kappa, eta = (10 ** (float(cfg("kappa_los_db", 5.0)) / 10), float(cfg("eta_los", 2.0))) if mode == "los" else (0.0, float(cfg("eta_nlos", 3.5)))

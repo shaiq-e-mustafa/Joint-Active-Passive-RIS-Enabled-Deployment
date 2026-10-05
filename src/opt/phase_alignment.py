@@ -25,7 +25,8 @@ from src.sys.convention import echo_vec, comm_vec, design_phases
 def coherent_phases(panel_pos, aim_pos, L, mode):
     """Per-element phase vector (radians) that coherently combines a panel's
     L elements toward `aim_pos`, derived from the exact steering-vector
-    conventions in build_T()/build_hbar():
+    conventions in build_T()/build_hbar(). The sin() formulas below are the LEGACY planar path (wavefront: planar) in the hermitian
+    convention; with wavefront: exact the design is design_phases() of src/sys/convention.py (k (d1 + d2) when reciprocal).
 
     mode="radar": build_T() applies Phi_i unconjugated (reflected_b = Phi_i @ b_i)
         phases_l = pi * l * (sin(theta_BS) - sin(theta_aim))
@@ -35,7 +36,8 @@ def coherent_phases(panel_pos, aim_pos, L, mode):
     """
     if wavefront_is_exact():
         # Spherical-wave design (Entry 12): cancel each element's true path-length difference.
-        # radar: g = G^H Phi b has terms e^{+jk d1_l} e^{j phi_l} e^{-jk d2_l}  ->  phi_l = k (d2_l - d1_l)
+        # reciprocal convention: the echo u = G^T Phi b has terms e^{-jk d1_l} e^{j phi_l} e^{-jk d2_l}  ->  phi_l = k (d1_l + d2_l) for radar
+        # and comm alike (design_phases). The legacy hermitian convention gave radar k (d2_l - d1_l) and comm the negative.
         el = element_positions(panel_pos, L)
         d1 = np.linalg.norm(el - np.asarray(BS_POS, float), axis=1)
         d2 = np.linalg.norm(el - np.asarray(aim_pos, float), axis=1)
@@ -149,27 +151,6 @@ def cross_panel_comm_offsets(system, user_idx=0, sweeps=3, grid=72):
 def apply_cross_panel_offsets(system, idx, betas):
     for i, b in zip(idx, betas):
         system.panels[i].state.phases = system.panels[i].state.phases + b
-    system.build_hbar()
-    system.build_w_mrt()
-    system.build_T()
-    system.build_J()
-
-
-def set_mixed_coherent_phases(system, target_pos, user_pos, radar_fraction=0.5):
-    """Split the panel population: the first radar_fraction of panels get
-    radar-coherent phases toward target_pos, the rest get comm-coherent
-    phases toward user_pos. A more realistic ISAC allocation than dedicating
-    every single panel to one function -- still a ceiling measurement (known
-    positions), still only intra-panel coherence per Entry 8's caveat.
-    """
-    n_radar = int(round(len(system.panels) * radar_fraction))
-    for i, panel in enumerate(system.panels):
-        L = panel.state.phases.shape[0]
-        if i < n_radar:
-            panel.state.phases = coherent_phases(panel.pos, target_pos, L, mode="radar")
-        else:
-            panel.state.phases = coherent_phases(panel.pos, user_pos, L, mode="comm")
-
     system.build_hbar()
     system.build_w_mrt()
     system.build_T()
