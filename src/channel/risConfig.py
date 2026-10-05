@@ -1,4 +1,5 @@
 from src.utils.channel_utils import to_linear, distance
+from src.utils.config import settings
 import numpy as np 
  
 def occlusion_probability(d, d0=60.0, scale=20.0, p_max=0.6):
@@ -36,9 +37,13 @@ def is_blocked_line_boolean(d, rng, lambda_b, mean_L):
     return rng.random() < p_block
 
 def get_link_params(pos_a, pos_b, rng,
-                     kappa_los_db: float = 5.0,
-                     eta_los: float = 2.5,
-                     eta_nlos: float = 3.5) -> tuple[float, float, bool]:
+                     kappa_los_db: float = None,
+                     eta_los: float = None,
+                     eta_nlos: float = None) -> tuple[float, float, bool]:
+    cm = settings.config.channel_model
+    kappa_los_db = float(getattr(cm, "kappa_los_db", 5.0)) if kappa_los_db is None else kappa_los_db
+    eta_los = float(cm.eta_los) if eta_los is None else eta_los
+    eta_nlos = float(cm.eta_nlos) if eta_nlos is None else eta_nlos
 
     d = distance(pos_a, pos_b)
     blocked = is_blocked(d, rng)
