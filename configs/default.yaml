@@ -36,6 +36,23 @@ channel_model:
   # --- powers ---------------------------------------------------------------------------------
   P_max : 30                     # WIRED (dBm)
   pmax_dB: 10                    # WIRED. Active-RIS per-element POWER gain cap (the draft's p_max); amplitude cap sqrt(10) = 3.16
+  # --- target / radar -------------------------------------------------------------------------
   RCS : 1                        # m^2
+  radar_scatter_gain: true       # WIRED. sigma_eff = 4*pi*sigma/lambda^2 (radar equation)
+  # --- communication --------------------------------------------------------------------------
+  modulation: qpsk               # the code generates QPSK symbols (src/waveform/symbols.py)
+  ber_formula: "Q(sqrt(SINR))"   # WIRED. Gray QPSK with symbol SINR. The draft's Q(sqrt(2 SINR)) is the BPSK formula
+  direct_comm_link: blocked      # WIRED via ISACSystem.direct_link_scale = 0 (Entry 12, "option 1")
+  # --- model structure ------------------------------------------------------------------------
+  reciprocity: reciprocal        # WIRED (src/sys/convention.py, audit C1): echo = G^T Phi b b^T Phi G; one RIS phase set k(d1+d2) serves
+                                 # radar and comm. "hermitian" reproduces Entries 1-12 (legacy 2-D planar path only)
+  echo_operator: all_pairs       # WIRED via ISACSystem.cross_panel_T (set True by src/sys/scenario.py)
+  blockage: line_boolean         # BS-panel link only, 30% at 100 m (Entry 1/12)
+  bs_panel_blockage: line_boolean  # WIRED in out/exp12_lib.make_scene. "none" = panels are sited with guaranteed line of sight to the BS
+  multipath_clutter: out_of_scope
+  # --- declared scope (assumptions, not open problems) ---------------------------------------------
+  scope_doppler: out_of_scope           # static target; no velocity estimation
+  scope_self_interference: out_of_scope # monostatic Tx/Rx isolation assumed solved (would need ~120 dB)
+  scope_wideband: narrowband            # 20 MHz, single-tap echo; band-averaged loss about 1.5 dB at this width, 5.7 dB at 80 MHz
   K_USERS: 8
   validate: True
