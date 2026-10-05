@@ -123,6 +123,7 @@ def evaluate_scene(design, scene, sinr_target_db=None, rate_cap=None):
     noise = np.array([N0 + sum(SV * np.sum(np.abs(p.state.phi_vec) ** 2 * np.abs(p.channels.f_by_user[k][:, 0]) ** 2)
                                for p in system.panels if p.state.active and p.state.a) for k in range(len(system.users))])
     radar, sinr, fracs, rates, joint_ok = [], [], [], [], True
+    links = ET.panel_links(system)                       # target-independent: computed once per scene, shared by all targets
     for t in system.targets:
         u = np.zeros((H.shape[0], 1), dtype=complex) if t.direct is None else t.direct.reshape(-1, 1).astype(complex).copy()
         for p in system.panels:
@@ -136,8 +137,9 @@ def evaluate_scene(design, scene, sinr_target_db=None, rate_cap=None):
         ill = ill / nrm
         # matched-beam SNR = rcs (ill_unnorm^H Rx ill_unnorm)(u^H J^-1 u) with ill_unnorm = |u| ill, hence the |u|^2 factor below
         quad = float((u[:, 0].conj() @ np.linalg.solve(t.J, u[:, 0])).real) * float(nrm ** 2)
-        v = ET.validity(system, t, seed=scene.seed)
+        v = ET.validity(system, t, seed=scene.seed, links=links)                                     # conservative bound: all panels aimed at t
         fracs.append(v["frac_ext"])
+        ext_db = ET.extended_loss_db(system, t, seed=scene.seed, current=True, links=links) if ET.is_extended() else 0.0   # focus as evaluated
         if design.beamformer == "joint" and np.linalg.norm(H) >= 1e-30:
             r = jb.joint_design(H, ill, P, noise, 10 ** (sinr_target_db / 10))
             if not r["status"].startswith("optimal"):
@@ -156,7 +158,7 @@ def evaluate_scene(design, scene, sinr_target_db=None, rate_cap=None):
             Rx = V @ V.conj().T + R0
             sn = bf.sinr(H, V, noise, R0)
         f = float(np.real(ill.conj() @ Rx @ ill))
-        radar.append(to_db(max(t.rcs * f * quad, 1e-30)) + (v["ext_loss_db"] if ET.is_extended() else 0.0))
+        radar.append(to_db(max(t.rcs * f * quad, 1e-30)) + ext_db)
         sinr.append(float(10 * np.log10(max(sn.min(), 1e-30))))
         rates.append(float(np.sum(np.minimum(np.log2(1 + sn), rate_cap))))
     return dict(radar_db=np.array(radar), sinr_db=np.array(sinr), rate_sum=float(np.min(rates)) if rates else 0.0,
