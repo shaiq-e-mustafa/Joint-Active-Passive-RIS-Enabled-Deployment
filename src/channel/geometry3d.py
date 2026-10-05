@@ -6,10 +6,11 @@ element, both for the phase exp(-j 2 pi d / lambda) and for the amplitude
     |h|^2 = beta(d) * g_rx * F_rx(theta_rx) * g_tx * F_tx(theta_tx)           (LoS part)
 
 where beta(d) is the project's path-loss law, F(theta) = max(cos theta, 0)^q is the element power
-pattern (theta = angle from the array normal), and g is the element gain. Element models:
-  RIS unit cell : F = cos^3 (Tang et al., arXiv:1911.05326, measured cell), per-link gain
-                  sqrt(G_rx G_tx) with G_rx = 4 pi dx dy / lambda^2 (aperture) and G_tx = 8 (their G for cos^3)
-                  so that one forward pass reproduces Tang's  Pr/Pt = G dx dy lambda^2 F F /((4 pi)^3 d1^2 d2^2).
+pattern (theta = angle from the array normal), and g is the element gain. Element models (all values come from configs/default.yaml; the defaults below equal the config values):
+  RIS unit cell : F = cos^q with q = ris_cell_q (1.0), per-link gain sqrt(G_rx G_tx) with G_rx = 4 pi dx dy / lambda^2 (= pi for lambda/2 cells)
+                  and G_tx = ris_cell_gain (pi, the aperture-limited gain of a lambda/2 cell). Tang et al. (arXiv:1911.05326) measured a larger cell:
+                  ris_cell_q = 3, ris_cell_gain = 8, which reproduces their  Pr/Pt = G dx dy lambda^2 F F /((4 pi)^3 d1^2 d2^2)  and is
+                  8.1 dB more optimistic per radar round trip; tests/test_upa3d.py sets those two values locally.
   BS element    : ideal half-wavelength aperture, g = 4 pi dx dy / lambda^2 = pi, F = cos theta (assumption).
   user / target : isotropic point, g = 1, F = 1.
 """
@@ -30,7 +31,7 @@ def end_model(kind):
     """(peak per-link gain, cosine exponent q) of an array end."""
     cell_gain_rx = 4 * np.pi * spacing() ** 2 / wavelength() ** 2        # = pi for lambda/2 cells
     if kind == "ris":
-        return float(np.sqrt(cell_gain_rx * float(cfg("ris_cell_gain", 8.0)))), float(cfg("ris_cell_q", 3.0))
+        return float(np.sqrt(cell_gain_rx * float(cfg("ris_cell_gain", np.pi)))), float(cfg("ris_cell_q", 1.0))
     if kind == "bs":
         return float(cell_gain_rx), float(cfg("bs_cell_q", 1.0))
     if kind == "point":
@@ -62,7 +63,7 @@ def upa_elements(center2, z, normal2, nx, ny):
 def panel_normal(ppos2, bs2, zone2):
     """Horizontal normal of a facade-mounted flat RIS: bisector of the directions to the BS and to the
     zone, so both lie in the front half-space whenever geometrically possible. A flat reflector cannot
-    serve a BS and a zone on opposite sides (angle 180 deg): the normal is then arbitrary and the cos^3
+    serve a BS and a zone on opposite sides (angle 180 deg): the normal is then arbitrary and the cos^q
     pattern zeroes the panel, which is the physically correct outcome."""
     p = np.asarray(ppos2, float)
     u1 = np.asarray(bs2, float) - p
