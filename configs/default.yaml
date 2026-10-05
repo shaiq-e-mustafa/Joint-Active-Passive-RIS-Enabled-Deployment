@@ -36,6 +36,15 @@ channel_model:
   # --- powers ---------------------------------------------------------------------------------
   P_max : 30                     # WIRED (dBm)
   pmax_dB: 10                    # WIRED. Active-RIS per-element POWER gain cap (the draft's p_max); amplitude cap sqrt(10) = 3.16
+  gain_mode: budget              # WIRED (src/opt/active_gains.py, out/exp12_lib.make_scene). budget = Long et al. (arXiv:2103.00709) power budget;
+                                 # random = the legacy uniform(0, cap) gains of Entries 1-12
+  ris_panel_power_dbm: 30        # WIRED. Per-panel power budget P_RIS (convention; Long et al. use 10 dBm for a few tens of elements)
+  ris_element_power_dbm: -10     # WIRED. Circuit power per element, passive and active (Long et al.)
+  ris_active_dc_dbm: -5          # WIRED. Extra DC power per ACTIVE element (Long et al.)
+  amplifier_efficiency: 0.8      # WIRED (Long et al.)
+  ris_network_budget_w: 2.0      # WIRED (src/opt/power_budget.py). TOTAL power the RIS network may draw (circuits + amplifier output / efficiency).
+                                 # null = unlimited. Enforced by the planner (which panels exist and which are active) and by enforce_network_budget().
+                                 # Convention: 2 W (Entry 14: 0.5-4 W changes the outcome; the BS transmits 1 W)
   # --- target / radar -------------------------------------------------------------------------
   RCS : 1                        # m^2
   radar_scatter_gain: true       # WIRED. sigma_eff = 4*pi*sigma/lambda^2 (radar equation)
@@ -51,6 +60,7 @@ channel_model:
   modulation: qpsk               # the code generates QPSK symbols (src/waveform/symbols.py)
   ber_formula: "Q(sqrt(SINR))"   # WIRED. Gray QPSK with symbol SINR. The draft's Q(sqrt(2 SINR)) is the BPSK formula
   direct_comm_link: blocked      # WIRED via ISACSystem.direct_link_scale = 0 (Entry 12, "option 1")
+  beamformer_baseline: rzf       # PENDING (MRT stays as legacy): regularized ZF + a dedicated sensing covariance R0
   # --- model structure ------------------------------------------------------------------------
   reciprocity: reciprocal        # WIRED (src/sys/convention.py, audit C1): echo = G^T Phi b b^T Phi G; one RIS phase set k(d1+d2) serves
                                  # radar and comm. "hermitian" reproduces Entries 1-12 (legacy 2-D planar path only)
@@ -62,5 +72,29 @@ channel_model:
   scope_doppler: out_of_scope           # static target; no velocity estimation
   scope_self_interference: out_of_scope # monostatic Tx/Rx isolation assumed solved (would need ~120 dB)
   scope_wideband: narrowband            # 20 MHz, single-tap echo; band-averaged loss about 1.5 dB at this width, 5.7 dB at 80 MHz
+  scope_active_ris_hardware: ideal      # per-element gain cap and power budget only; no stability limit, no amplifier noise figure beyond thermal-level noise
   K_USERS: 8
   validate: True
+
+# ==========================================================================================
+# OPTIMIZER GROUNDWORK (src/opt/design.py, evaluate.py, loss.py). Hard constraints are RULES: a design that breaks one is infeasible,
+# not merely penalized. Everything else is a weighted loss term.
+# ==========================================================================================
+optimizer:
+  # --- hard constraints ---------------------------------------------------------------------
+  validity_max_intercept: 0.10   # HARD: the extended target may intercept at most 10% of the transmit power (model validity, Entry 13)
+  validity_percentile: 95        # ... in at least this percentile of the evaluated scene draws (worst target in each draw)
+  power_percentile: 95           # HARD: network power drawn (configs: ris_network_budget_w) must hold in this percentile of the draws
+  max_panels: 100                # number of candidate sites
+  # --- quality targets ----------------------------------------------------------------------
+  sinr_target_db: 10             # every user must reach this SINR
+  radar_margin_db: 3             # radar SNR is asked to exceed the detection requirement by this margin (src/utils/detection.py)
+  rate_cap_bps_hz: 8             # per-user rate is capped at a practical value when reporting sum rate
+  # --- loss (soft) ----------------------------------------------------------------------------
+  loss_weights: {sensing: 1.0, comm: 1.0, power: 0.1, panel_cost: 0.0, active_cost: 0.0}
+  cvar_alpha: 0.2                # shortfalls are averaged over the worst 20% of draws (robustness), not over all draws
+  # --- evaluation scenes ----------------------------------------------------------------------
+  n_users: 8
+  n_targets: 3
+  n_draws: 8
+  scene_seed: 1234
