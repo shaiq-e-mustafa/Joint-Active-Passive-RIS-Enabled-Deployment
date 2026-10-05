@@ -36,6 +36,15 @@ channel_model:
   # --- powers ---------------------------------------------------------------------------------
   P_max : 30                     # WIRED (dBm)
   pmax_dB: 10                    # WIRED. Active-RIS per-element POWER gain cap (the draft's p_max); amplitude cap sqrt(10) = 3.16
+  gain_mode: budget              # WIRED (src/opt/active_gains.py, out/exp12_lib.make_scene). budget = Long et al. (arXiv:2103.00709) power budget;
+                                 # random = the legacy uniform(0, cap) gains of Entries 1-12
+  ris_panel_power_dbm: 30        # WIRED. Per-panel power budget P_RIS (convention; Long et al. use 10 dBm for a few tens of elements)
+  ris_element_power_dbm: -10     # WIRED. Circuit power per element, passive and active (Long et al.)
+  ris_active_dc_dbm: -5          # WIRED. Extra DC power per ACTIVE element (Long et al.)
+  amplifier_efficiency: 0.8      # WIRED (Long et al.)
+  ris_network_budget_w: 2.0      # WIRED (src/opt/power_budget.py). TOTAL power the RIS network may draw (circuits + amplifier output / efficiency).
+                                 # null = unlimited. Enforced by the planner (which panels exist and which are active) and by enforce_network_budget().
+                                 # Convention: 2 W (Entry 14: 0.5-4 W changes the outcome; the BS transmits 1 W)
   # --- target / radar -------------------------------------------------------------------------
   RCS : 1                        # m^2
   radar_scatter_gain: true       # WIRED. sigma_eff = 4*pi*sigma/lambda^2 (radar equation)
@@ -62,5 +71,6 @@ channel_model:
   scope_doppler: out_of_scope           # static target; no velocity estimation
   scope_self_interference: out_of_scope # monostatic Tx/Rx isolation assumed solved (would need ~120 dB)
   scope_wideband: narrowband            # 20 MHz, single-tap echo; band-averaged loss about 1.5 dB at this width, 5.7 dB at 80 MHz
+  scope_active_ris_hardware: ideal      # per-element gain cap and power budget only; no stability limit, no amplifier noise figure beyond thermal-level noise
   K_USERS: 8
   validate: True
