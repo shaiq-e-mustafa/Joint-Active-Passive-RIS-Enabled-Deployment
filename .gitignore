@@ -3,3 +3,6 @@ manuscript/
 CALUDE.md
 *.md
 *.html
+# extracted text of reference papers (copyrighted; keep local, cite the DOI instead)
+out/*_text.txt
+out/*paper*.txt
