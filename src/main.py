@@ -4,7 +4,7 @@ sys.path.append(os.path.abspath(os.path.join(os.getcwd(), ".")))
 
 import numpy as np
 from src.utils.config import settings
-from src.utils.channel_utils import to_linear, to_db
+from src.utils.channel_utils import to_linear, to_linear_dbm, to_db
 from src.sys.factory import build_system
 from src.waveform.symbols import generate_qpsk_symbols
 from src.sim.validation import validate_sinr_montecarlo, plot
@@ -42,7 +42,7 @@ if __name__ == "__main__":
         active_mask=active_mask,
         L=settings.config.channel_model.L,
         M=settings.config.channel_model.M,
-        p_total_linear=to_linear(settings.config.channel_model.P_max),
+        p_total_linear=to_linear_dbm(settings.config.channel_model.P_max),
         rng=rng,
     )
 

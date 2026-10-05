@@ -17,7 +17,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.utils.config import settings
-from src.utils.channel_utils import to_linear, to_db
+from src.utils.channel_utils import to_linear, to_linear_dbm, to_db
 from src.sys.factory import build_system
 from src.waveform.symbols import generate_qpsk_symbols
 from src.sim.radar_validation import (
@@ -47,7 +47,7 @@ def test_single_target_snr():
         active_mask=np.array([True] * 5 + [False] * 15),  # 5 active, 15 passive
         L=settings.config.channel_model.L,
         M=settings.config.channel_model.M,
-        p_total_linear=to_linear(30),  # 30 dBm
+        p_total_linear=to_linear_dbm(30),  # 30 dBm
         rng=rng,
     )
 
@@ -90,7 +90,7 @@ def test_multi_target_snr():
         active_mask=np.array([True] * 8 + [False] * 22),  # 8 active panels
         L=settings.config.channel_model.L,
         M=settings.config.channel_model.M,
-        p_total_linear=to_linear(30),
+        p_total_linear=to_linear_dbm(30),
         rng=rng,
     )
 

@@ -10,6 +10,7 @@ class RISPanel:
     panel_id: int
     channels: PanelChannels
     state: PanelState
+    pos: np.ndarray = None      # (x, y) in meters, set by factory.build_system()
 
 @dataclass
 class UserLink:
@@ -43,15 +44,17 @@ class ISACSystem:
     """
 
     def build_hbar(self):
+        # G_i^H @ Phi_i^H depends only on the panel, not the user -- precompute
+        # once per active panel instead of recomputing it inside the user loop.
+        active_panels = [
+            (panel, panel.channels.G.conj().T @ panel.state.phi.conj().T)
+            for panel in self.panels if panel.state.a != 0
+        ]
         for user in self.users:
             h_bar = user.channels.hdk.copy()
-            for panel in self.panels:
-                if panel.state.a == 0:
-                    continue
+            for panel, M_i in active_panels:
                 f_i = panel.channels.f_by_user[user.user_id]
-                h_bar = h_bar + panel.state.a * (
-                    panel.channels.G.conj().T @ panel.state.phi.conj().T @ f_i
-                )
+                h_bar = h_bar + panel.state.a * (M_i @ f_i)
             user.h_bar = h_bar
 
     def build_w_mrt(self, equal_split: bool = True, weights: np.ndarray = None):
@@ -169,14 +172,16 @@ class ISACSystem:
         Eq. (31) in corrected form from Clarifications.
         """
         M = settings.config.channel_model.M
+        # G_i, Phi_i are panel-only (target-independent) -- fetch once per
+        # active panel instead of recomputing inside the target loop.
+        active_panels = [
+            (panel, panel.channels.G, panel.state.phi)
+            for panel in self.panels if panel.state.a != 0
+        ]
         for target in self.targets:
             T = np.zeros((M, M), dtype=complex)
-            for panel in self.panels:
-                if panel.state.a == 0:
-                    continue
-                G_i = panel.channels.G
+            for panel, G_i, Phi_i in active_panels:
                 b_i = panel.channels.b_by_target[target.target_id]
-                Phi_i = panel.state.phi
 
                 # Φ_i on BOTH reflections (not Φ_i† on return)
                 # T_i = G_i† Φ_i b_i b_i† Φ_i G_i
@@ -233,29 +238,32 @@ class ISACSystem:
         sigma_v_sq = to_linear(int(settings.config.channel_model.active_ris_noise) - 30)
         sigma_r_sq = to_linear(int(settings.config.channel_model.reciever_nosie) - 30)
 
+        # G_i, Phi_i, Phi_Phi_H are panel-only (target-independent) -- fetch/compute
+        # once per active panel instead of recomputing inside the target loop.
+        # The "direct return" noise term (term2) doesn't touch b_i or sigma_t_sq
+        # either, so it's identical for every target and gets summed once.
+        active_panels = []
+        J_direct_return = np.zeros((M, M), dtype=complex)
+        for panel in self.panels:
+            if panel.state.a == 0:
+                continue
+            G_i = panel.channels.G
+            Phi_i = panel.state.phi
+            Phi_Phi_H = Phi_i @ Phi_i.conj().T  # For passive: I_L; for active: A_i²
+            active_panels.append((panel, G_i, Phi_i, Phi_Phi_H))
+            J_direct_return += sigma_v_sq * (G_i.conj().T @ Phi_Phi_H @ G_i)
+
         for target in self.targets:
             sigma_t_sq = target.rcs
-            J = np.zeros((M, M), dtype=complex)
+            J = J_direct_return.copy()
 
-            # Sum over active RIS panels for amplified-noise terms
-            for panel in self.panels:
-                if panel.state.a == 0:
-                    continue
-
-                G_i = panel.channels.G  # L x M
+            # RCS-scattered amplified noise term: σ_t² σ_v² × [term] (target-dependent via b_i)
+            for panel, G_i, Phi_i, Phi_Phi_H in active_panels:
                 b_i = panel.channels.b_by_target[target.target_id]  # L x 1
-                Phi_i = panel.state.phi  # L x L (diagonal)
-                Phi_Phi_H = Phi_i @ Phi_i.conj().T  # For passive: I_L; for active: A_i²
-
-                # RCS-scattered amplified noise term: σ_t² σ_v² × [term]
                 reflected_b = Phi_i @ b_i  # L x 1
                 term1 = (G_i.conj().T @ reflected_b @ reflected_b.conj().T @ Phi_Phi_H @
                          reflected_b @ reflected_b.conj().T @ G_i)
                 J += sigma_t_sq * sigma_v_sq * term1
-
-                # Direct return amplified noise term: σ_v² × [term]
-                term2 = G_i.conj().T @ Phi_Phi_H @ G_i
-                J += sigma_v_sq * term2
 
             # Receiver thermal noise
             J += sigma_r_sq * np.eye(M)

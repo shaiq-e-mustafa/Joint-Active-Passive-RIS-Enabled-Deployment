@@ -9,7 +9,7 @@ Validates the corrected radar sensing equations from Clarifications.tex:
 
 import numpy as np
 import matplotlib.pyplot as plt
-from src.utils.channel_utils import to_db, to_linear
+from src.utils.channel_utils import to_db, to_linear, to_linear_dbm
 from src.sys.factory import build_system
 from src.waveform.symbols import generate_qpsk_symbols
 from src.utils.config import settings
@@ -247,7 +247,7 @@ def simulate_snr_vs_power(
     settings.load_config()
 
     for p_max_dbm in p_max_dbm_list:
-        p_max_linear = to_linear(p_max_dbm)
+        p_max_linear = to_linear_dbm(p_max_dbm)
 
         # Active panel configuration
         active_mask = np.zeros(n_panels, dtype=bool)
@@ -422,7 +422,7 @@ def simulate_active_passive_tradeoff(
         rng = np.random.default_rng(seed=0)
 
     settings.load_config()
-    p_max_linear = to_linear(p_max_dbm)
+    p_max_linear = to_linear_dbm(p_max_dbm)
 
     n_active_list = list(range(0, n_panels + 1, max(1, n_panels // 10)))
     snr_list = []

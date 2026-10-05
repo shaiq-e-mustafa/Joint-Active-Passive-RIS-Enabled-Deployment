@@ -1,4 +1,4 @@
-from src.channel.risConfig import get_link_params, is_blocked
+from src.channel.risConfig import get_link_params, is_blocked, is_blocked_line_boolean, calibrate_lambda_b
 from src.channel.channel_model import get_path_loss_linear
 from src.channel.fading import get_Gi, get_bi, get_fi, get_hdk, get_rtt
 from src.sys.risInfo import PanelState
@@ -9,17 +9,41 @@ from src.utils.config import settings
 from src.sim.deployment import BS_POS, PANEL_RADIUS, USER_RADIUS, TARGET_RADIUS, TARGET_RCS_LIM
 import numpy as np
 
-def sample_geometry(n_panels, k_users, k_targets, rng):
-    """Wraps your existing deployment.py sampling — positions + blockage only."""
-    panel_pos = [sample_polar(PANEL_RADIUS, (0, 2*np.pi), rng) for _ in range(n_panels)]
-    panel_blocked = [is_blocked(distance(BS_POS, p), rng) for p in panel_pos]
-    user_pos = [sample_polar(USER_RADIUS, (0, 2*np.pi), rng) for _ in range(k_users)]
-    target_pos = [sample_polar(TARGET_RADIUS, (0, 2*np.pi), rng) for _ in range(k_targets)]
+def sample_geometry(n_panels, k_users, k_targets, rng, target_p_block=0.0, mean_obstacle_len=5.0,
+                     panel_radius=None, target_radius=None, user_radius=None):
+    """Wraps your existing deployment.py sampling — positions + blockage only.
+
+    panel_radius/target_radius/user_radius override the deployment.py defaults
+    (PANEL_RADIUS/TARGET_RADIUS/USER_RADIUS) when given, for geometry
+    sensitivity sweeps (see src/opt/geometry_sensitivity.py).
+
+    Panel blockage uses the Line Boolean Model (PPP obstacles), calibrated so
+    that a panel at the mean BS-panel distance is blocked with probability
+    target_p_block. Returns panel_active as 1=active/0=blocked, matching
+    PanelState.a semantics directly.
+    """
+    panel_radius = panel_radius if panel_radius is not None else PANEL_RADIUS
+    target_radius = target_radius if target_radius is not None else TARGET_RADIUS
+    user_radius = user_radius if user_radius is not None else USER_RADIUS
+
+    panel_pos = [sample_polar(panel_radius, (0, 2*np.pi), rng) for _ in range(n_panels)]
+
+    d_ref = 0.5 * (panel_radius[0] + panel_radius[1])
+    lambda_b = calibrate_lambda_b(target_p_block, d_ref, mean_obstacle_len)
+    panel_active = [
+        0 if is_blocked_line_boolean(distance(BS_POS, p), rng, lambda_b, mean_obstacle_len) else 1
+        for p in panel_pos
+    ]
+
+    user_pos = [sample_polar(user_radius, (0, 2*np.pi), rng) for _ in range(k_users)]
+    target_pos = [sample_polar(target_radius, (0, 2*np.pi), rng) for _ in range(k_targets)]
     target_rcs = [random_rcs((0.1, TARGET_RCS_LIM), rng) for _ in range(k_targets)]
-    return panel_pos, panel_blocked, user_pos, target_pos, target_rcs
+    return panel_pos, panel_active, user_pos, target_pos, target_rcs
 
 
-def realize_channels(panel_pos, user_pos, target_pos, active_mask, L, M, rng):
+def realize_channels(panel_pos, user_pos, target_pos, active_mask, L, M, rng, panel_active=None):
+    if panel_active is None:
+        panel_active = [1] * len(panel_pos)
     panels_channels, panels_state, link_blockage = [], [], []
 
     for i, ppos in enumerate(panel_pos):
@@ -51,7 +75,7 @@ def realize_channels(panel_pos, user_pos, target_pos, active_mask, L, M, rng):
         panels_channels.append(PanelChannels(G=G_i, b_by_target=b_by_target, f_by_user=f_by_user))
 
         state = PanelState(
-            active=bool(active_mask[i]), a=1,
+            active=bool(active_mask[i]), a=int(panel_active[i]),
             phases=rng.uniform(0, 2*np.pi, size=L),
             gains=(rng.uniform(0, np.sqrt(to_linear(settings.config.channel_model.pmax_dB)), size=L)
                    if active_mask[i] else None),
@@ -83,11 +107,20 @@ def realize_channels(panel_pos, user_pos, target_pos, active_mask, L, M, rng):
 
     return panels_channels, panels_state, users_channels
 
-def build_system(n_panels, k_users, k_targets, active_mask, L, M, p_total_linear, rng):
-    panel_pos, panel_blocked, user_pos, target_pos, target_rcs = sample_geometry(n_panels, k_users, k_targets, rng)
-    panels_ch, panels_st, users_ch = realize_channels(panel_pos=panel_pos, user_pos=user_pos, active_mask=active_mask, target_pos=target_pos, L=L, M=M, rng=rng)
+def build_system(n_panels, k_users, k_targets, active_mask, L, M, p_total_linear, rng,
+                  target_p_block=0.0, mean_obstacle_len=5.0,
+                  panel_radius=None, target_radius=None, user_radius=None):
+    panel_pos, panel_active, user_pos, target_pos, target_rcs = sample_geometry(
+        n_panels, k_users, k_targets, rng, target_p_block=target_p_block, mean_obstacle_len=mean_obstacle_len,
+        panel_radius=panel_radius, target_radius=target_radius, user_radius=user_radius,
+    )
+    panels_ch, panels_st, users_ch = realize_channels(
+        panel_pos=panel_pos, user_pos=user_pos, active_mask=active_mask, panel_active=panel_active,
+        target_pos=target_pos, L=L, M=M, rng=rng
+    )
 
-    panels = [RISPanel(panel_id=i, channels=c, state=s) for i, (c, s) in enumerate(zip(panels_ch, panels_st))]
+    panels = [RISPanel(panel_id=i, channels=c, state=s, pos=p)
+              for i, (c, s, p) in enumerate(zip(panels_ch, panels_st, panel_pos))]
     users = [UserLink(user_id=k, channels=c) for k, c in enumerate(users_ch)]
     targets = [TargetLink(target_id=k, rcs=target_rcs[k]) for k in range(k_targets)]   
 
