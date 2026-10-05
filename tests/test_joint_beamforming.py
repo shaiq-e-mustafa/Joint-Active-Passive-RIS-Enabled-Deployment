@@ -70,4 +70,10 @@ check("rank-one form: same Rx, SINRs met, sensing covariance PSD", okx, f"(sensi
 h1 = cn(M, 1) * 20
 rk = jb.joint_design(h1, h1[:, 0] / np.linalg.norm(h1), P, [1.0], 10 ** (3 / 10))
 check("K=1, sensing direction == user direction: radar value = P", abs(rk["radar"] - P) < 1e-5, f"({rk['radar']:.6f})")
+# --- rank1_form with a user that gets no signal power (W_k = 0) must not divide by zero ---
+_H = np.eye(4, 2, dtype=complex)
+_res = dict(W=[np.zeros((4, 4), complex), np.diag([0, 1.0, 0, 0]).astype(complex)], R0=np.zeros((4, 4), complex))
+_V, _R0 = jb.rank1_form(_res, _H)
+check("rank1_form: a zero user covariance gives no stream and no NaN", np.all(np.isfinite(_V)) and np.all(np.isfinite(_R0)) and np.allclose(_V[:, 0], 0))
+
 print("\nALL PASS" if ok else "\nSOME CHECKS FAILED")

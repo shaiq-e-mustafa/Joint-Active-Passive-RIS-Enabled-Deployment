@@ -12,9 +12,8 @@ A Design fixes everything that is chosen at deployment or configuration time:
   rho               share of BS power on a dedicated matched sensing beam (split designs only; 'joint' ignores it)
 Scene quantities (users, targets, blockage, fading) are NOT part of the design: they are drawn by src/opt/evaluate.py.
 """
-from dataclasses import dataclass, field, replace
+from dataclasses import dataclass, replace
 import numpy as np
-from src.channel.geometry3d import cfg
 from src.sys import scenario as sc
 from src.opt import placement3d as pl
 from src.opt import power_budget as pb

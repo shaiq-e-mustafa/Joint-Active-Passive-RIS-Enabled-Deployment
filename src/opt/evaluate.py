@@ -22,7 +22,6 @@ from src.sys import scenario as sc
 from src.sys import extended_target as ET
 from src.sys.convention import echo_vec, comm_vec, illumination
 from src.opt import beamforming as bf
-from src.opt import joint_beamforming as jb
 from src.opt import power_budget as pb
 from src.opt import active_gains as ag
 from src.opt.phase_alignment import coherent_phases_upa
@@ -141,6 +140,7 @@ def evaluate_scene(design, scene, sinr_target_db=None, rate_cap=None):
         fracs.append(v["frac_ext"])
         ext_db = ET.extended_loss_db(system, t, seed=scene.seed, current=True, links=links) if ET.is_extended() else 0.0   # focus as evaluated
         if design.beamformer == "joint" and np.linalg.norm(H) >= 1e-30:
+            from src.opt import joint_beamforming as jb      # imported here: cvxpy is only needed for the joint design
             r = jb.joint_design(H, ill, P, noise, 10 ** (sinr_target_db / 10))
             if not r["status"].startswith("optimal"):
                 joint_ok = False

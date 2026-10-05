@@ -20,7 +20,7 @@ def mrt(H, P):
 
 
 def zf(H, P):
-    V = H @ np.linalg.inv(H.conj().T @ H)
+    V = H @ np.linalg.pinv(H.conj().T @ H)               # pinv = inv for full-rank H; finite (min-norm) when two users have the same channel
     return np.sqrt(P / H.shape[1]) * V / np.linalg.norm(V, axis=0)
 
 
@@ -60,6 +60,8 @@ def wmmse(H, P, noise, R0=None, weights=None, iters=300, tol=1e-9, V0=None, retu
         w = 1.0 / e
         A = (H * (alpha * w * np.abs(u) ** 2)[None, :]) @ H.conj().T   # sum_j alpha_j w_j |u_j|^2 h_j h_j^H
         lam, Uv = np.linalg.eigh(A)
+        keep = lam > 1e-12 * max(float(lam.max()), 1e-300)             # A = sum_j c_j h_j h_j^H has rank <= K < M: its null space carries no part of H
+        lam, Uv = lam[keep], Uv[:, keep]                               # (dropping it is exact and avoids the 0/0 of (lam + mu)^-2 at mu = 0)
         Hproj = Uv.conj().T @ H                                        # (M, K)
         coef = alpha * w * u                                           # v_k = coef_k (A + mu I)^-1 h_k
 
