@@ -6,3 +6,13 @@ CALUDE.md
 # extracted text of reference papers (copyrighted; keep local, cite the DOI instead)
 out/*_text.txt
 out/*paper*.txt
+
+# generated experiment output under out/ (the scripts stay trackable; files already tracked stay tracked)
+out/*.json
+out/*.out
+out/*.log
+out/figs/
+out/exp*/
+out/range_sweep/
+out/freq_range/
+out/*backup*
