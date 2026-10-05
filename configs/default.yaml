@@ -39,6 +39,14 @@ channel_model:
   # --- target / radar -------------------------------------------------------------------------
   RCS : 1                        # m^2
   radar_scatter_gain: true       # WIRED. sigma_eff = 4*pi*sigma/lambda^2 (radar equation)
+  target_model: extended         # WIRED (src/sys/extended_target.py): 0.5 x 0.5 x 1.7 m, incoherent scatterers, total RCS fixed; SNR_ext/SNR_point = mean rho^4.
+                                 # "point" reproduces Entries 1-12 (unphysical when the intercepted-power fraction exceeds 1)
+  target_size_m: [0.5, 0.5, 1.7]
+  # --- detection ------------------------------------------------------------------------------
+  detection:                     # WIRED via src/utils/detection.py
+    pd: 0.9
+    pfa: 1.0e-6
+    target_fluctuation: swerling1   # swerling1 -> +21.14 dB single pulse; swerling0 (Albersheim) -> +13.11 dB
   # --- communication --------------------------------------------------------------------------
   modulation: qpsk               # the code generates QPSK symbols (src/waveform/symbols.py)
   ber_formula: "Q(sqrt(SINR))"   # WIRED. Gray QPSK with symbol SINR. The draft's Q(sqrt(2 SINR)) is the BPSK formula
