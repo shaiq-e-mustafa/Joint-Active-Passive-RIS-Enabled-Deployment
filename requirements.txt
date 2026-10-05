@@ -1,0 +1,6 @@
+# Third-party packages imported by src/ and tests/, with the versions the tests were last run against (Python 3.13).
+numpy>=2.2
+scipy>=1.16
+PyYAML>=6.0
+matplotlib>=3.10      # sweep scripts under src/opt only
+cvxpy>=1.9            # only for the joint comm+sensing design (src/opt/joint_beamforming.py); CLARABEL solver ships with it
