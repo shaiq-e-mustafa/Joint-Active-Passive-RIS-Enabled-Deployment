@@ -73,6 +73,9 @@ def rank1_form(result, H):
         Wk, h = result["W"][k], H[:, k]
         a = Wk @ h
         g = np.real(h.conj() @ a)
+        if not np.isfinite(g) or g <= 1e-300:                            # user k gets no signal power: no stream, its covariance stays in R0
+            R0 = R0 + Wk
+            continue
         V[:, k] = a / np.sqrt(g)
         R0 = R0 + (Wk - np.outer(V[:, k], V[:, k].conj()))
     return V, (R0 + R0.conj().T) / 2
