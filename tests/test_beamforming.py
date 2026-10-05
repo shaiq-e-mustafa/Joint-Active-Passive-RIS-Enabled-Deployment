@@ -60,4 +60,13 @@ def neg_rate(x):
 best = max(-minimize(neg_rate, rng.standard_normal(2 * M2 * K2), method="BFGS").fun for _ in range(30))
 r_w = bf.sum_rate(H2, bf.wmmse(H2, P, s2), np.full(K2, s2))
 check("small problem: WMMSE within 0.1% of multi-start brute force", r_w >= best * 0.999, f"(WMMSE {r_w:.4f}, brute force {best:.4f})")
+# --- two users with the SAME channel (rank-deficient H): finite beams, full power ---
+rng_d = np.random.default_rng(5)
+Hd = rng_d.standard_normal((8, 3)) + 1j * rng_d.standard_normal((8, 3))
+Hd[:, 2] = Hd[:, 0]
+for name_, fn_ in (("zf", lambda: bf.zf(Hd, 1.0)), ("rzf", lambda: bf.rzf(Hd, 1.0, np.full(3, 0.1))), ("wmmse", lambda: bf.wmmse(Hd, 1.0, np.full(3, 0.1)))):
+    Vd = fn_()
+    check(f"{name_}: identical user channels give finite beams", np.all(np.isfinite(Vd)))
+check("wmmse: identical user channels still use the full power", abs(np.sum(np.abs(bf.wmmse(Hd, 1.0, np.full(3, 0.1))) ** 2) - 1.0) < 1e-6)
+
 print("\nALL PASS" if ok else "\nSOME CHECKS FAILED")

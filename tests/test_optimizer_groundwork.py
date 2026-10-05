@@ -67,7 +67,8 @@ rep2 = ls.constraint_report(small, draws)
 check("power budget is a hard constraint (0.05 W -> infeasible)", rep2["power_excess"] > 0 and rep2["nominal_power_excess"] > 0 and not rep2["feasible"])
 cm.ris_network_budget_w = saved_b
 ov = dz.Design(np.array([[100.0, 0.0], [100.5, 0.0]]), np.zeros(2, bool), 1.0, 16, 16)
-check("overlapping panels are infeasible", ls.constraint_report(ov, ev.evaluate_design(ov, scenes))["overlap_excess"] == 1)
+rep_ov = ls.constraint_report(ov, ev.evaluate_design(ov, scenes))
+check("overlapping panels are infeasible; the excess is overlapping pairs per panel (relative)", rep_ov["overlap_excess"] == 0.5 and not rep_ov["feasible"], f"({rep_ov['overlap_excess']})")
 
 # 5. loss: infeasible is always worse than feasible; a better design has lower loss
 good = ls.total_loss(small, draws)
