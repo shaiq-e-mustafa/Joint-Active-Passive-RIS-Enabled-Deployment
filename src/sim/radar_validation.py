@@ -60,7 +60,7 @@ def validate_radar_snr_single_symbol(system, x: np.ndarray) -> RadarSNRResults:
         # Empirical: build echo decomposition
         # y_r = α_t T x + [active noise] + [thermal noise]
         sigma_v_sq = to_linear(
-            int(settings.config.channel_model.active_ris_noise) - 30
+            float(settings.config.channel_model.active_ris_noise) - 30
         )
 
         # Signal power: E[|α_t T x|²] = σ_t² ||T x||²

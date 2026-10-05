@@ -1,16 +1,100 @@
+# ==========================================================================================
+# CONVENTIONS (decided after the RF-sensing audit, docs/audit_review.html). Every number the
+# results depend on is here. "WIRED" = the code reads it; "PENDING" = decided but not yet implemented.
+# Results produced before this block (Entries 1-12) used different values; see docs/phase_a_log.html.
+# ==========================================================================================
 channel_model:
-  carrier_frequency: 28e9       
+  # --- carrier, bandwidth, noise ------------------------------------------------------------
+  carrier_frequency: 1.5e+9      # WIRED. L-band (Entry 9)
   c: 3e8
-  eta_los: 2.5
-  eta_nlos: 3.5
-  beta_0_dB: -61
+  bandwidth_hz: 20.0e+6          # DECIDED. Narrowband model is valid to ~1.5 dB band-averaged loss at 20 MHz
+                                 # (audit follow-up: 0.2 / 1.5 / 3.3 / 5.7 dB at 5 / 20 / 40 / 80 MHz)
+  noise_figure_db: 5             # DECIDED
+  reciever_nosie: -96            # WIRED (dBm) = -174 + 10log10(20e6) + 5. Was -90 (implied 80 MHz): results rise 6 dB
+  active_ris_noise: -96          # WIRED (dBm) same bandwidth
+  # --- path loss ------------------------------------------------------------------------------
+  eta_los: 2.0                   # WIRED. Deterministic LoS ray between two elements = free space. Was 2.5 (statistical fit;
+                                 # +31.6 dB on the same scene). 3GPP UMi LoS is ~2.1
+  eta_nlos: 3.5                  # WIRED. Statistical, for blocked links
+  beta_0_dB: -35.96              # WIRED. Friis at 1 m, 1.5 GHz (float; Entry 12 fixed the int() truncation)
   d_0 : 1
-  pmax_dB: 10
-  P_max : 30
-  active_ris_noise: -90
-  reciever_nosie: -90
+  kappa_los_db: 5.0              # WIRED. Rician K-factor of LoS links (matches the reference paper)
+  # --- array and element model ----------------------------------------------------------------
+  wavefront: exact               # legacy 2-D ULA path in factory.py: exact | planar. The 3-D UPA scenario (src/sys/scenario.py) ignores it
   M: 64
-  L: 32
+  bs_cols: 8                     # WIRED. BS = 8x8 UPA
+  bs_normal: [1.0, 0.0]          # WIRED. BS faces +x
+  bs_cell_q: 1.0                 # WIRED. BS element pattern cos(theta), ideal aperture gain pi (assumption, uncited)
+  ris_cell_gain: 3.14159265      # WIRED. Aperture-limited gain of a lambda/2 cell, 4*pi*A/lambda^2 = pi. Was 8 (Tang's larger cell,
+                                 # 8.1 dB optimistic per radar round trip)
+  ris_cell_q: 1.0                # WIRED. cos(theta) pattern. Was cos^3 (Tang); tests/test_upa3d.py sets 8 / 3 locally to reproduce Tang
+  L: 32                          # legacy 2-D ULA path only. UPA panels take nx, ny per experiment
+  h_bs: 10.0                     # WIRED (m) 3GPP TR 38.901 UMi
+  h_user: 1.5                    # WIRED (m) 3GPP TR 38.901 UMi
+  h_target: 1.5                  # WIRED (m)
+  h_panel: 5.0                   # WIRED (m) facade-mounted. ASSUMPTION, not cited
+  # --- powers ---------------------------------------------------------------------------------
+  P_max : 30                     # WIRED (dBm)
+  pmax_dB: 10                    # WIRED. Active-RIS per-element POWER gain cap (the draft's p_max); amplitude cap sqrt(10) = 3.16
+  gain_mode: budget              # WIRED (src/opt/active_gains.py, out/exp12_lib.make_scene). budget = Long et al. (arXiv:2103.00709) power budget;
+                                 # random = the legacy uniform(0, cap) gains of Entries 1-12
+  ris_panel_power_dbm: 30        # WIRED. Per-panel power budget P_RIS (convention; Long et al. use 10 dBm for a few tens of elements)
+  ris_element_power_dbm: -10     # WIRED. Circuit power per element, passive and active (Long et al.)
+  ris_active_dc_dbm: -5          # WIRED. Extra DC power per ACTIVE element (Long et al.)
+  amplifier_efficiency: 0.8      # WIRED (Long et al.)
+  ris_network_budget_w: 2.0      # WIRED (src/opt/power_budget.py). TOTAL power the RIS network may draw (circuits + amplifier output / efficiency).
+                                 # null = unlimited. Enforced by the planner (which panels exist and which are active) and by enforce_network_budget().
+                                 # Convention: 2 W (Entry 14: 0.5-4 W changes the outcome; the BS transmits 1 W)
+  # --- target / radar -------------------------------------------------------------------------
+  RCS : 1                        # m^2
+  radar_scatter_gain: true       # WIRED. sigma_eff = 4*pi*sigma/lambda^2 (radar equation)
+  target_model: extended         # WIRED (src/sys/extended_target.py): 0.5 x 0.5 x 1.7 m, incoherent scatterers, total RCS fixed; SNR_ext/SNR_point = mean rho^4.
+                                 # "point" reproduces Entries 1-12 (unphysical when the intercepted-power fraction exceeds 1)
+  target_size_m: [0.5, 0.5, 1.7]
+  # --- detection ------------------------------------------------------------------------------
+  detection:                     # WIRED via src/utils/detection.py
+    pd: 0.9
+    pfa: 1.0e-6
+    target_fluctuation: swerling1   # swerling1 -> +21.14 dB single pulse; swerling0 (Albersheim) -> +13.11 dB
+  # --- communication --------------------------------------------------------------------------
+  modulation: qpsk               # the code generates QPSK symbols (src/waveform/symbols.py)
+  ber_formula: "Q(sqrt(SINR))"   # WIRED. Gray QPSK with symbol SINR. The draft's Q(sqrt(2 SINR)) is the BPSK formula
+  direct_comm_link: blocked      # WIRED via ISACSystem.direct_link_scale = 0 (Entry 12, "option 1")
+  beamformer_baseline: rzf       # PENDING (MRT stays as legacy): regularized ZF + a dedicated sensing covariance R0
+  # --- model structure ------------------------------------------------------------------------
+  reciprocity: reciprocal        # WIRED (src/sys/convention.py, audit C1): echo = G^T Phi b b^T Phi G; one RIS phase set k(d1+d2) serves
+                                 # radar and comm. "hermitian" reproduces Entries 1-12 (legacy 2-D planar path only)
+  echo_operator: all_pairs       # WIRED via ISACSystem.cross_panel_T (set True by src/sys/scenario.py)
+  blockage: line_boolean         # BS-panel link only, 30% at 100 m (Entry 1/12)
+  bs_panel_blockage: line_boolean  # WIRED in out/exp12_lib.make_scene. "none" = panels are sited with guaranteed line of sight to the BS
+  multipath_clutter: out_of_scope
+  # --- declared scope (assumptions, not open problems) ---------------------------------------------
+  scope_doppler: out_of_scope           # static target; no velocity estimation
+  scope_self_interference: out_of_scope # monostatic Tx/Rx isolation assumed solved (would need ~120 dB)
+  scope_wideband: narrowband            # 20 MHz, single-tap echo; band-averaged loss about 1.5 dB at this width, 5.7 dB at 80 MHz
+  scope_active_ris_hardware: ideal      # per-element gain cap and power budget only; no stability limit, no amplifier noise figure beyond thermal-level noise
   K_USERS: 8
-  RCS : 1
   validate: True
+
+# ==========================================================================================
+# OPTIMIZER GROUNDWORK (src/opt/design.py, evaluate.py, loss.py). Hard constraints are RULES: a design that breaks one is infeasible,
+# not merely penalized. Everything else is a weighted loss term.
+# ==========================================================================================
+optimizer:
+  # --- hard constraints ---------------------------------------------------------------------
+  validity_max_intercept: 0.10   # HARD: the extended target may intercept at most 10% of the transmit power (model validity, Entry 13)
+  validity_percentile: 95        # ... in at least this percentile of the evaluated scene draws (worst target in each draw)
+  power_percentile: 95           # HARD: network power drawn (configs: ris_network_budget_w) must hold in this percentile of the draws
+  max_panels: 100                # number of candidate sites
+  # --- quality targets ----------------------------------------------------------------------
+  sinr_target_db: 10             # every user must reach this SINR
+  radar_margin_db: 3             # radar SNR is asked to exceed the detection requirement by this margin (src/utils/detection.py)
+  rate_cap_bps_hz: 8             # per-user rate is capped at a practical value when reporting sum rate
+  # --- loss (soft) ----------------------------------------------------------------------------
+  loss_weights: {sensing: 1.0, comm: 1.0, power: 0.1, panel_cost: 0.0, active_cost: 0.0}
+  cvar_alpha: 0.2                # shortfalls are averaged over the worst 20% of draws (robustness), not over all draws
+  # --- evaluation scenes ----------------------------------------------------------------------
+  n_users: 8
+  n_targets: 3
+  n_draws: 8
+  scene_seed: 1234
