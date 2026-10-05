@@ -1,0 +1,50 @@
+[01:05:14] [+    0.0s] Starting Week 1 sweep: N=[20, 30, 40, 50], 100 geometry trials x 50 blockage trials each (400 geometry-trials total), target_p_block=0.3, target_margin_db=3.0
+[01:05:14] [+    0.0s] N=20: starting 100 geometry trials (50 blockage draws each)
+[01:05:31] [+   16.7s] N=20: geometry trial 10/100 done (gap so far: mean= 6.43 dB, last= 4.84 dB) | overall 10/400 | 0.598 trials/s | ETA    652s
+[01:05:48] [+   34.2s] N=20: geometry trial 20/100 done (gap so far: mean= 6.41 dB, last= 5.77 dB) | overall 20/400 | 0.584 trials/s | ETA    650s
+[01:06:05] [+   50.9s] N=20: geometry trial 30/100 done (gap so far: mean= 6.79 dB, last= 6.47 dB) | overall 30/400 | 0.589 trials/s | ETA    628s
+[01:06:24] [+   69.6s] N=20: geometry trial 40/100 done (gap so far: mean= 6.65 dB, last=10.23 dB) | overall 40/400 | 0.575 trials/s | ETA    626s
+[01:06:41] [+   87.3s] N=20: geometry trial 50/100 done (gap so far: mean= 6.34 dB, last= 4.89 dB) | overall 50/400 | 0.573 trials/s | ETA    611s
+[01:06:58] [+  104.1s] N=20: geometry trial 60/100 done (gap so far: mean= 6.41 dB, last= 6.12 dB) | overall 60/400 | 0.576 trials/s | ETA    590s
+[01:07:15] [+  120.4s] N=20: geometry trial 70/100 done (gap so far: mean= 6.52 dB, last= 5.15 dB) | overall 70/400 | 0.582 trials/s | ETA    567s
+[01:07:31] [+  136.8s] N=20: geometry trial 80/100 done (gap so far: mean= 6.59 dB, last= 6.99 dB) | overall 80/400 | 0.585 trials/s | ETA    547s
+[01:07:47] [+  153.3s] N=20: geometry trial 90/100 done (gap so far: mean= 6.56 dB, last= 3.22 dB) | overall 90/400 | 0.587 trials/s | ETA    528s
+[01:08:04] [+  169.8s] N=20: geometry trial 100/100 done (gap so far: mean= 6.72 dB, last=10.73 dB) | overall 100/400 | 0.589 trials/s | ETA    509s
+[01:08:04] [+  169.8s] N= 20 COMPLETE: ceiling=-248.82 dB, worst-case=-255.53 dB, gap= 6.72 dB (std=2.28)
+[01:08:04] [+  169.8s] N=30: starting 100 geometry trials (50 blockage draws each)
+[01:08:27] [+  193.0s] N=30: geometry trial 10/100 done (gap so far: mean= 6.22 dB, last= 3.90 dB) | overall 110/400 | 0.570 trials/s | ETA    509s
+[01:08:50] [+  216.1s] N=30: geometry trial 20/100 done (gap so far: mean= 6.12 dB, last= 5.49 dB) | overall 120/400 | 0.555 trials/s | ETA    504s
+[01:09:14] [+  239.4s] N=30: geometry trial 30/100 done (gap so far: mean= 5.95 dB, last= 5.10 dB) | overall 130/400 | 0.543 trials/s | ETA    497s
+[01:09:40] [+  265.9s] N=30: geometry trial 40/100 done (gap so far: mean= 5.75 dB, last= 5.89 dB) | overall 140/400 | 0.527 trials/s | ETA    494s
+[01:10:04] [+  289.9s] N=30: geometry trial 50/100 done (gap so far: mean= 5.71 dB, last= 5.55 dB) | overall 150/400 | 0.517 trials/s | ETA    483s
+[01:10:31] [+  316.4s] N=30: geometry trial 60/100 done (gap so far: mean= 5.62 dB, last= 6.58 dB) | overall 160/400 | 0.506 trials/s | ETA    475s
+[01:10:55] [+  340.7s] N=30: geometry trial 70/100 done (gap so far: mean= 5.60 dB, last= 5.32 dB) | overall 170/400 | 0.499 trials/s | ETA    461s
+[01:11:17] [+  363.3s] N=30: geometry trial 80/100 done (gap so far: mean= 5.63 dB, last= 6.67 dB) | overall 180/400 | 0.496 trials/s | ETA    444s
+[01:11:41] [+  386.5s] N=30: geometry trial 90/100 done (gap so far: mean= 5.60 dB, last= 5.81 dB) | overall 190/400 | 0.492 trials/s | ETA    427s
+[01:12:03] [+  408.9s] N=30: geometry trial 100/100 done (gap so far: mean= 5.60 dB, last= 9.42 dB) | overall 200/400 | 0.489 trials/s | ETA    409s
+[01:12:03] [+  408.9s] N= 30 COMPLETE: ceiling=-247.64 dB, worst-case=-253.24 dB, gap= 5.60 dB (std=1.33)
+[01:12:03] [+  408.9s] N=40: starting 100 geometry trials (50 blockage draws each)
+[01:12:32] [+  438.0s] N=40: geometry trial 10/100 done (gap so far: mean= 5.50 dB, last= 8.81 dB) | overall 210/400 | 0.479 trials/s | ETA    396s
+[01:13:01] [+  467.0s] N=40: geometry trial 20/100 done (gap so far: mean= 5.07 dB, last= 3.12 dB) | overall 220/400 | 0.471 trials/s | ETA    382s
+[01:13:30] [+  495.9s] N=40: geometry trial 30/100 done (gap so far: mean= 5.15 dB, last= 6.25 dB) | overall 230/400 | 0.464 trials/s | ETA    367s
+[01:13:59] [+  525.0s] N=40: geometry trial 40/100 done (gap so far: mean= 5.24 dB, last= 4.40 dB) | overall 240/400 | 0.457 trials/s | ETA    350s
+[01:14:28] [+  554.2s] N=40: geometry trial 50/100 done (gap so far: mean= 5.07 dB, last= 3.49 dB) | overall 250/400 | 0.451 trials/s | ETA    333s
+[01:14:57] [+  582.9s] N=40: geometry trial 60/100 done (gap so far: mean= 5.01 dB, last= 6.22 dB) | overall 260/400 | 0.446 trials/s | ETA    314s
+[01:15:26] [+  612.1s] N=40: geometry trial 70/100 done (gap so far: mean= 5.03 dB, last= 4.38 dB) | overall 270/400 | 0.441 trials/s | ETA    295s
+[01:15:57] [+  642.9s] N=40: geometry trial 80/100 done (gap so far: mean= 5.06 dB, last= 5.25 dB) | overall 280/400 | 0.436 trials/s | ETA    276s
+[01:16:31] [+  676.9s] N=40: geometry trial 90/100 done (gap so far: mean= 4.99 dB, last= 4.03 dB) | overall 290/400 | 0.428 trials/s | ETA    257s
+[01:17:00] [+  706.3s] N=40: geometry trial 100/100 done (gap so far: mean= 5.00 dB, last= 6.86 dB) | overall 300/400 | 0.425 trials/s | ETA    235s
+[01:17:00] [+  706.3s] N= 40 COMPLETE: ceiling=-246.62 dB, worst-case=-251.62 dB, gap= 5.00 dB (std=1.32)
+[01:17:00] [+  706.3s] N=50: starting 100 geometry trials (50 blockage draws each)
+[01:17:37] [+  742.4s] N=50: geometry trial 10/100 done (gap so far: mean= 5.22 dB, last= 5.38 dB) | overall 310/400 | 0.418 trials/s | ETA    216s
+[01:18:13] [+  778.4s] N=50: geometry trial 20/100 done (gap so far: mean= 4.97 dB, last= 7.72 dB) | overall 320/400 | 0.411 trials/s | ETA    195s
+[01:18:49] [+  814.5s] N=50: geometry trial 30/100 done (gap so far: mean= 5.03 dB, last= 5.64 dB) | overall 330/400 | 0.405 trials/s | ETA    173s
+[01:19:24] [+  850.1s] N=50: geometry trial 40/100 done (gap so far: mean= 4.92 dB, last= 4.77 dB) | overall 340/400 | 0.400 trials/s | ETA    150s
+[01:20:00] [+  886.1s] N=50: geometry trial 50/100 done (gap so far: mean= 5.09 dB, last= 3.80 dB) | overall 350/400 | 0.395 trials/s | ETA    127s
+[01:20:38] [+  924.1s] N=50: geometry trial 60/100 done (gap so far: mean= 5.09 dB, last= 4.82 dB) | overall 360/400 | 0.390 trials/s | ETA    103s
+[01:21:17] [+  962.9s] N=50: geometry trial 70/100 done (gap so far: mean= 5.01 dB, last= 4.17 dB) | overall 370/400 | 0.384 trials/s | ETA     78s
+[01:21:55] [+ 1000.4s] N=50: geometry trial 80/100 done (gap so far: mean= 4.97 dB, last= 4.51 dB) | overall 380/400 | 0.380 trials/s | ETA     53s
+[01:22:30] [+ 1036.3s] N=50: geometry trial 90/100 done (gap so far: mean= 5.00 dB, last= 4.08 dB) | overall 390/400 | 0.376 trials/s | ETA     27s
+[01:23:03] [+ 1069.1s] N=50: geometry trial 100/100 done (gap so far: mean= 5.03 dB, last= 6.84 dB) | overall 400/400 | 0.374 trials/s | ETA      0s
+[01:23:03] [+ 1069.1s] N= 50 COMPLETE: ceiling=-244.82 dB, worst-case=-249.85 dB, gap= 5.03 dB (std=1.22)
+[01:23:04] [+ 1069.9s] Sweep complete. min_n=None. Figure saved to out\figs\week1_panel_count_sweep.png

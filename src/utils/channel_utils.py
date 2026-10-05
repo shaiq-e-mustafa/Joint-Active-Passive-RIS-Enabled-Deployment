@@ -7,10 +7,19 @@ def q_function(x):
 def to_linear(db):
     return 10 ** (db / 10.0)
 
+def to_linear_dbm(dbm):
+    """dBm -> Watts (linear). Same -30 offset already applied ad hoc for
+    active_ris_noise/reciever_nosie in configs/default.yaml; centralized here
+    so every dBm power figure (including P_max) converts consistently."""
+    return to_linear(dbm - 30)
+
 def sample_polar(radius_range, angle_range, rng):
     r = rng.uniform(*radius_range)
     theta = rng.uniform(*angle_range)
     return np.array([r * np.cos(theta), r * np.sin(theta)])
+
+def random_rcs(target_rcs_lim, rng):
+    return float(rng.uniform(*target_rcs_lim))
 
 def bearing(from_pos, to_pos):
     from_pos = np.asarray(from_pos, dtype=float)

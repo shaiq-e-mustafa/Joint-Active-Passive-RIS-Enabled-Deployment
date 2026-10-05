@@ -30,6 +30,7 @@ class PanelState:
     phases: np.ndarray = None           # radians depending on number of elements
     gains: np.ndarray = None            # If active, gains are generated
     noise: int = 0
+    noise_2: int = 0   
 
     @property
     def theta(self) -> np.ndarray:
