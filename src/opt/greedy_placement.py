@@ -18,17 +18,13 @@ speedup; candidate count and blockage-trial count are also reduced from the
 original spec for a first pass (see run_greedy_placement's defaults).
 """
 
-import time
 import numpy as np
 
 from src.utils.config import settings
-from src.utils.channel_utils import to_linear_dbm, to_db, sample_polar, random_rcs, bearing, distance
+from src.utils.channel_utils import to_linear_dbm, sample_polar, random_rcs, distance
 from src.sys.factory import build_one_panel_channel, make_direct_channel
 from src.sys.system import RISPanel, UserLink, TargetLink, ISACSystem
-from src.sys.channels import UserChannels
-from src.channel.fading import get_hdk
-from src.channel.risConfig import get_link_params, calibrate_lambda_b, is_blocked_line_boolean
-from src.channel.channel_model import get_path_loss_linear
+from src.channel.risConfig import calibrate_lambda_b, is_blocked_line_boolean
 from src.sim.deployment import BS_POS, PANEL_RADIUS, TARGET_RADIUS, USER_RADIUS, TARGET_RCS_LIM
 from src.opt.week1_panel_count import hybrid_snr_db, ProgressLogger
 
