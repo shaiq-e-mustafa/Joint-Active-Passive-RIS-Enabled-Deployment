@@ -5,8 +5,6 @@ users at 1.5 m height. RIS panels (flat UPAs on facades, 5 m height) are placed 
 panel's normal bisects its directions to the BS and the zone centre.
 """
 import numpy as np
-from src.utils.config import settings
-from src.utils.channel_utils import to_db
 from src.channel.risConfig import get_link_params
 from src.channel.channel_model import wavelength
 from src.channel.geometry3d import (cfg, to3, upa_elements, panel_normal, link_3d, bs_array,
@@ -37,8 +35,8 @@ def disk_sample(center, radius, n, rng):
 
 
 def direct_vector(tpos2, mode, rng):
-    """BS<->target direct path as an (M,1) vector in the same convention as g_i = G_i^H Phi_i b_i
-    (conjugate of the forward row). mode: 'los' | 'nlos' | 'none'."""
+    """BS<->target direct path as an (M,1) echo vector, in the convention of src/sys/convention.py (direct_echo: the forward
+    row transposed when reciprocal, conjugate-transposed in the legacy hermitian convention). mode: 'los' | 'nlos' | 'none'."""
     if mode == "none":
         return None
     kappa, eta = (10 ** (float(cfg("kappa_los_db", 5.0)) / 10), float(cfg("eta_los", 2.0))) if mode == "los" else (0.0, float(cfg("eta_nlos", 3.5)))

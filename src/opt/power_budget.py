@@ -3,6 +3,13 @@
 Power accounting follows src/opt/active_gains.py (Long et al., arXiv:2103.00709): every element costs P_c; an active element costs P_c + P_DC,
 and an active panel also draws the amplifier output  min(P_out, a^2 (P_in + L sigma_v^2)) / upsilon.
 
+WHAT THE NUMBER IS: the amplifier input of an active panel is evaluated for a REFERENCE beam, the full transmit power P on the strongest matched
+beam over the targets (active_gains.target_beams), at the gains the panel was given. It is an estimate of the power drawn, not the power under the
+beamformer actually transmitted: that spreads P over several streams (usually a smaller input), but a comm beam aimed through a nearby panel could
+also deliver more than the matched target beam does, so this is NOT a guaranteed upper bound.
+plan_under_budget likewise assumes every active panel runs at the maximum gain a_max: its power estimate is at least what the panel draws at the
+gain it will really get, while the coverage it credits to that gain is optimistic.
+
 enforce_network_budget(system)  -- take a built system, measure the power drawn, and if it exceeds the budget downgrade active panels to passive
     (least benefit per extra watt first), then switch off the weakest panels (a = 0) if still over.
 plan_under_budget(...)          -- planning-time knapsack-greedy on the coverage surrogate of placement3d: at each step choose the best of
@@ -10,7 +17,7 @@ plan_under_budget(...)          -- planning-time knapsack-greedy on the coverage
 """
 import numpy as np
 from src.utils.channel_utils import to_linear
-from src.channel.geometry3d import cfg, to3, upa_elements, panel_normal, link_3d, bs_array, point_end, ris_end
+from src.channel.geometry3d import cfg, upa_elements, panel_normal, link_3d, bs_array, ris_end
 from src.channel.risConfig import calibrate_lambda_b, is_blocked_line_boolean
 from src.sim.deployment import BS_POS
 from src.sys import scenario as sc
@@ -32,7 +39,7 @@ def network_power_w(system):
     beams = ag.target_beams(system) if system.targets else []
     total = 0.0
     for p in system.panels:
-        if getattr(p.state, "off", False):
+        if p.state.off:
             continue
         L = p.state.phases.shape[0]
         if not p.state.active or p.state.gains is None:
@@ -63,10 +70,10 @@ def enforce_network_budget(system, budget=None):
     cur = before
     # 0) blocked panels (no line of sight to the BS) are useless: power them down first
     for p in system.panels:
-        if not p.state.a and not getattr(p.state, "off", False):
+        if not p.state.a and not p.state.off:
             p.state.off = True
     cur = network_power_w(system)
-    sel = [p for p in system.panels if p.state.a and not getattr(p.state, "off", False)]
+    sel = [p for p in system.panels if p.state.a and not p.state.off]
     ben = {id(p): _benefit(system, p) for p in sel}
     # 1) downgrade active -> passive, least benefit per extra watt first (the extra-watt cost is similar across panels, so rank by benefit)
     for p in sorted([p for p in sel if p.state.active], key=lambda p: ben[id(p)]):

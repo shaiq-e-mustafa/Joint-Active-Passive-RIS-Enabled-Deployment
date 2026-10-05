@@ -54,4 +54,18 @@ for _ in range(n):
 mc = sig / n / np.linalg.norm(uc) ** 4
 check("closed form mean(rho^4) == Monte Carlo over random scatterer amplitudes", abs(10 * np.log10(mc / formula)) < 0.3,
       f"(MC {10*np.log10(mc):.2f} dB, formula {10*np.log10(formula):.2f} dB)")
+# --- loss with the phases the panels actually have (current=True) ---
+for pn in s.panels:
+    pn.state.phases = coherent_phases_upa(pn, t.pos, "radar")
+l_all = ET.extended_loss_db(s, t, seed=2)
+l_cur = ET.extended_loss_db(s, t, seed=2, current=True)
+check("current=True equals the re-aimed loss when every panel is aimed at the target", abs(l_all - l_cur) < 1e-9, f"({l_all:.3f} vs {l_cur:.3f} dB)")
+l_links = ET.extended_loss_db(s, t, seed=2, current=True, links=ET.panel_links(s))
+check("precomputed panel links give the identical result", abs(l_links - l_cur) < 1e-12)
+for pn in s.panels[::2]:                                   # every other panel aimed at a user instead (a comm-role panel)
+    pn.state.phases = coherent_phases_upa(pn, users[0].pos, "comm")
+l_mixed = ET.extended_loss_db(s, t, seed=2, current=True)
+check("with half the panels aimed elsewhere the loss changes and stays <= 0 dB", abs(l_mixed - l_cur) > 1e-3 and l_mixed <= 1e-9, f"({l_cur:.2f} -> {l_mixed:.2f} dB)")
+v_mixed = ET.validity(s, t, seed=2)
+check("the intercepted-power bound ignores the current phases (conservative: all aimed at the target)", abs(v_mixed["ext_loss_db"] - l_all) < 1e-9)
 print("\nALL PASS" if ok else "\nSOME CHECKS FAILED")

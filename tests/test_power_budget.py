@@ -57,4 +57,18 @@ dropped = [ben_before[id(p)] for p in s.panels if p.state.a and not p.state.acti
 check("downgraded panels are the least beneficial ones", (min(kept) >= max(dropped) - 1e-18) if kept and dropped else True)
 rep2 = pb.enforce_network_budget(s, budget=0.3)
 check("tiny budget switches panels off, still within budget", rep2["after_w"] <= 0.3 + 1e-9 and rep2["switched_off"] > 0, f"({rep2['after_w']:.3f} W, {rep2['switched_off']} off)")
+# --- greedy_order: asking for more sites than candidates returns all candidates instead of crashing ---
+cands3 = pl.annulus_candidates(3)
+dp3 = sc.disk_sample(sc.ZONE_CENTER, sc.ZONE_RADIUS, 4, np.random.default_rng(0))
+order3 = pl.greedy_order(cands3, dp3, 8, 8, n_select=5, n_trials=4)
+check("greedy_order with n_select > candidates returns every candidate once", sorted(order3) == [0, 1, 2], f"({order3})")
+
+# --- PanelState: `off` is a declared field; an active panel without assigned gains acts as unit gain ---
+from src.sys.risInfo import PanelState
+ps = PanelState(active=True, a=1, phases=np.linspace(0, 1, 8))
+check("PanelState.off is a declared field, False by default", ps.off is False and "off" in PanelState.__dataclass_fields__)
+check("active panel with gains not assigned yet: phi_vec is unit modulus (no crash)", np.allclose(np.abs(ps.phi_vec), 1.0))
+ps.gains = np.full(8, 2.0)
+check("active panel with gains: phi_vec = gain * phase", np.allclose(np.abs(ps.phi_vec), 2.0))
+
 print("\nALL PASS" if ok else "\nSOME CHECKS FAILED")

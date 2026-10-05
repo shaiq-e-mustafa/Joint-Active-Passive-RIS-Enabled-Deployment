@@ -2,7 +2,7 @@
 
 Greedy on a deterministic *coverage surrogate*: for every candidate site c and design point q (a possible
 target location in the zone) the planner knows the LoS geometry, hence the echo vector the panel would
-contribute if it aimed at q:  g_{c,q} = G_c^H (phi_q * b_{c,q})  (M-dim, exact spherical-wave phases).
+contribute if it aimed at q:  g_{c,q} = G_c^T (phi_q * b_{c,q})  (M-dim, exact spherical-wave phases, echo_vec of src/sys/convention.py).
 Adding candidate c to the chosen set S gives, with its panel-level phase aligned to the running sum,
     |tot_q + e^{j beta} g_{c,q}|^2 = |tot_q|^2 + |g|^2 + 2 |tot_q^H g|            (if the BS link is not blocked)
 Score(c) = min over design points q of  mean over blockage trials t of  10 log10 |tot_{t,q}|^4  (radar SNR ~ |g|^4).
@@ -57,8 +57,8 @@ def greedy_order(candidates, design_points, nx, ny, n_select, p_block=0.30, n_tr
     M = g.shape[2]
     tot = np.zeros((n_trials, nQ, M), dtype=complex)
     chosen, avail = [], list(range(nC))
-    for _ in range(n_select):
-        best, best_score, best_tot = None, -np.inf, None
+    for _ in range(min(n_select, nC)):                                                 # cannot choose more sites than there are candidates
+        best, best_score = avail[0], -np.inf                                           # fallback if no candidate has a usable score
         for c in avail:
             gc = g[c]                                                                 # (Q, M)
             ip = np.einsum("tqm,qm->tq", tot.conj(), gc)                              # <tot, g>

@@ -143,4 +143,21 @@ check("near-field (Tang) 16x16 RIS ~15 m from the target", abs(ours / tang_near 
       f"(ours/Tang-near = {ours / tang_near:.4f}; one-way gain {10 * np.log10(ours):.1f} dB)")
 cm.M, cm.bs_cols = _saved
 
+
+# --- missing RIS-cell config keys must not silently fall back to Tang's cell (gain 8, cos^3) ---
+import yaml
+from src.channel.geometry3d import end_model
+_cm = settings.config.channel_model
+_yaml = yaml.safe_load(open(Path(__file__).parent.parent / "configs" / "default.yaml", encoding="utf-8"))["channel_model"]
+_expected = (float(np.sqrt(np.pi * float(_yaml["ris_cell_gain"]))), float(_yaml["ris_cell_q"]))     # sqrt(G_rx G_tx), q from the committed config
+_keep = (_cm.ris_cell_gain, _cm.ris_cell_q)                    # this test leaves Tang's values set above; restore them afterwards
+del _cm.ris_cell_gain, _cm.ris_cell_q
+try:
+    without_keys = end_model("ris")
+finally:
+    _cm.ris_cell_gain, _cm.ris_cell_q = _keep
+_ok = np.allclose(without_keys, _expected)
+ok &= bool(_ok)
+print(f"[{'PASS' if _ok else 'FAIL'}] end_model('ris') with the config keys missing equals the committed config values (per-link gain {without_keys[0]:.4f}, q {without_keys[1]:g})")
+
 print("\nALL PASS" if ok else "\nSOME CHECKS FAILED")
