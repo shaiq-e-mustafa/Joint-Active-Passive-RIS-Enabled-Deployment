@@ -11,10 +11,11 @@ SOFT (weighted terms, each averaged over the worst `cvar_alpha` fraction of scen
     power      power drawn / budget (a small push toward frugal designs)
     panel_cost, active_cost   per-panel / per-active-panel deployment cost (weights default to 0)
 """
+from dataclasses import replace
 import numpy as np
 from src.channel.channel_model import wavelength
 from src.opt import power_budget as pb
-from src.opt.design import Design, opt_cfg
+from src.opt.design import opt_cfg
 from src.opt import evaluate as ev
 from src.utils.detection import required_snr_db
 
@@ -54,7 +55,7 @@ def constraint_report(design, draws):
         nominal_power_excess=0.0 if B is None else max(0.0, (design.nominal_power_w() - B) / B),
         validity_excess=max(0.0, (p_val - lim) / lim),
         sites_excess=max(0.0, (design.n_panels - int(opt_cfg("max_panels", 100))) / float(opt_cfg("max_panels", 100))),
-        overlap_excess=float(len(overlap_pairs(design))),
+        overlap_excess=len(overlap_pairs(design)) / max(1, design.n_panels),                   # overlapping pairs per panel (relative, like the others)
     )
     rep["power_p"], rep["validity_p"] = p_pow, p_val
     rep["feasible"] = all(rep[k] <= 1e-12 for k in ("power_excess", "nominal_power_excess", "validity_excess", "sites_excess", "overlap_excess"))
@@ -104,7 +105,7 @@ def evaluate_and_score(design, scenes):
 # ------------------------------------------------------------------------------------------------ projection
 def _subset(design, keep):
     keep = list(keep)
-    return Design(design.sites[keep], design.active[keep], design.radar_share, design.nx, design.ny, design.beamformer, design.rho, design.policy, design.balance)
+    return replace(design, sites=design.sites[keep], active=design.active[keep])
 
 
 def project_to_feasible(design, scenes, max_iter=60):
